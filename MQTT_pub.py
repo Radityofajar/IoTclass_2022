@@ -1,6 +1,6 @@
 import paho.mqtt.client as mqtt 
-from random import uniform
 import time
+import serial
 
 #mqttBroker ="mqtt.eclipseprojects.io" 
 mqttBroker ="210.123.42.157" 
@@ -8,10 +8,11 @@ mqttBroker ="210.123.42.157"
 client = mqtt.Client("Sensor_Temperature_1")
 #client.username_pw_set("username", "password")
 client.connect(mqttBroker)
-Topic = "TEMPERATURE"
+Topic = "IoT_Class"
+ser = serial.Serial('COM3', 115200)
 
 while True:
-    randNumber = uniform(20.0, 21.0)
-    client.publish(Topic, randNumber)
-    print("Just published " + str(randNumber) + f" to topic {Topic}")
+    payload = (ser.readline().decode('utf-8').rstrip())
+    client.publish(Topic, payload)
+    print("Just published " + str(payload) + f" to topic {Topic}")
     time.sleep(1)

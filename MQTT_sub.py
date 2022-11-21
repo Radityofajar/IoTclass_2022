@@ -1,4 +1,4 @@
-
+#import all the libraries
 import paho.mqtt.client as mqtt
 import time
 
@@ -7,7 +7,7 @@ def on_message(client, userdata, message):
 
 #mqttBroker ="mqtt.eclipseprojects.io"
 mqttBroker ="210.123.42.157" 
-Topic = "TEMPERATURE"
+Topic = "IoT_Class"
 
 client = mqtt.Client("User_device")
 #client.username_pw_set("username", "password")
